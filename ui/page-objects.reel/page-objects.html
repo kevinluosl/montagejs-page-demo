@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="page-objects.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="PageObjects">
+        <article class="content">
+            <h1 id="toc_0">MontageJS Objects</h1>
+
+            <p>MontageJS provides a thin veneer over the JavaScript object model: Types are represented by constructor functions. Constructor functions have a <code>prototype</code>. The <code>prototype</code> has a <code>constructor</code>. <code>instanceof</code> and <code>new</code> work as you would expect.</p>
+
+            <p>For a succinct comparison, the following examples A and B are equivalent:</p>
+
+            <h3 id="toc_1">Example A: JavaScript (ECMAScript 5)</h3>
+            <div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Penguin</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">Bird</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+                <span class="p">}</span>
+
+                <span class="nx">Penguin</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Bird</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+
+                <span class="nx">Penguin</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">Penguin</span><span class="p">;</span>
+
+                <span class="nx">Penguin</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">fly</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nx">Bird</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">fly</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+                <span class="p">};</span>
+
+                <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Penguin</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">"habitat"</span><span class="p">,</span> <span class="p">{</span>
+                <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_habitat</span><span class="p">;</span>
+                <span class="p">},</span>
+                <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">_habitat</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="p">});</span>
+
+                <span class="nx">Penguin</span><span class="p">.</span><span class="nx">staticMethod</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="p">};</span>
+            </code></pre></div>
+            <h3 id="toc_2">Example B: MontageJS</h3>
+            <div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Penguin</span> <span class="o">=</span> <span class="nx">Bird</span><span class="p">.</span><span class="nx">specialize</span><span class="p">({</span>
+                <span class="nx">constructor</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="kd">function</span> <span class="nx">Penguin</span><span class="p">()</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="kr">super</span><span class="p">();</span>
+                <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="nx">fly</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="kr">super</span><span class="p">();</span>
+                <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="nx">habitat</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_habitat</span><span class="p">;</span>
+                <span class="p">},</span>
+                <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">_habitat</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="p">},</span> <span class="p">{</span>
+                <span class="nx">staticMethod</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="p">});</span>
+            </code></pre></div>
+            <p>The MontageJS constructor has a <code>specialize</code> method that accepts <a href="http://ecma-international.org/ecma-262/5.1/#sec-8.6" target="_blank">ECMAScript 5</a> property descriptors for the new prototype and another optional set of descriptors for properties of its constructor. It uses <code>Object.create</code> to extend the parent's prototype, and <code>Object.defineProperty</code> to apply the property descriptors. For the most part, this just provides a convenient and error-resistant way to declare new types, reinforcing the existing JavaScript conventions.</p>
+
+            <h2 id="toc_3">MontageJS Methods</h2>
+
+            <p>However, MontageJS does provide some additional features. Within any <code>Montage</code> method, <code>super(...args)</code> will call the eponymous method of the parent prototype. Likewise, <code>super()</code> within a getter will get a property according to the parent prototype, and <code>super(value)</code> within a setter will set a property according to the parent prototype.</p>
+
+            <p>In this example, the <code>Type</code> implements an <code>id</code> getter, where identifiers are granted in the order of first access. <code>Subtype</code> overrides the identifier property such that the identifier is a string with an underscore prefix.</p>
+            <div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">ids</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WeakMap</span><span class="p">();</span>
+                <span class="kd">var</span> <span class="nx">nextId</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                <span class="kd">var</span> <span class="nx">Type</span> <span class="o">=</span> <span class="nx">Montage</span><span class="p">.</span><span class="nx">specialize</span><span class="p">({</span>
+                <span class="nx">id</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">ids</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="k">this</span><span class="p">))</span> <span class="p">{</span>
+                <span class="nx">ids</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">nextId</span><span class="o">++</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">return</span> <span class="nx">ids</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="p">});</span>
+
+                <span class="kd">var</span> <span class="nx">Subtype</span> <span class="o">=</span> <span class="nx">Type</span><span class="p">.</span><span class="nx">specialize</span><span class="p">({</span>
+                <span class="nx">id</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="s2">"_"</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="kr">super</span><span class="p">();</span>
+                <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="p">});</span>
+            </code></pre></div>
+            <p>MontageJS also supports a small number of modifications to the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank">ES5 property-descriptor</a>. Montage alters the defaults for <code>writable</code> and <code>configurable</code>—properties are both writable and configurable unless you specify otherwise. In general properties continue are <code>enumerable</code> by default. The default is changed for properterties with names that start with <code>_</code> or where the value is a function (methods).</p>
+
+            <h2 id="toc_4">Extending the JavaScript Object Model</h2>
+
+            <p>Perhaps the most subtle and interesting way that <code>Montage.specialize</code> extends the JavaScript object model is that it causes constructor functions to inherit from their parent constructor, in parallel the prototype chain. This makes it possible to use or override <code>Montage.specialize</code>, <code>defineProperties</code>, and <code>defineProperty</code> for subtrees of your object model. Montage implements <code>specialize</code> and <code>defineProperties</code> such that an overridden <code>defineProperty</code> is sufficient to specialize the property descriptor protocol for all descendent types. Overriding <code>specialize</code> gives you a hook to decorate the constructor for all descendent types.</p>
+            <div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Type</span> <span class="o">=</span> <span class="nx">Montage</span><span class="p">.</span><span class="nx">specialize</span><span class="p">({</span>
+                <span class="p">},</span> <span class="p">{</span>
+                <span class="nx">specialize</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="kr">super</span><span class="p">();</span>
+                <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="nx">defineProperty</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">descriptor</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="kr">super</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">descriptor</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="p">});</span>
+            </code></pre></div>
+            <p>For debugging, it is best to give your constructor a name. <code>Montage.specialize</code> permits a specialization to  provide the constructor among the <code>prototype</code> property descriptors. It lifts this property out instead of providing a default, anonymous constructor function then goes on to set up its prototype and inheritance chain as normal.</p>
+            <div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Type</span> <span class="o">=</span> <span class="nx">Montage</span><span class="p">.</span><span class="nx">specialize</span><span class="p">({</span>
+                <span class="nx">constructor</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="kd">function</span> <span class="nx">Type</span><span class="p">()</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="kr">super</span><span class="p">();</span>
+                <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="p">});</span>
+
+                <span class="kd">var</span> <span class="nx">Subtype</span> <span class="o">=</span> <span class="nx">Type</span><span class="p">.</span><span class="nx">specialize</span><span class="p">({</span>
+                <span class="nx">constructor</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="kd">function</span> <span class="nx">Subtype</span><span class="p">()</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="kr">super</span><span class="p">();</span>
+                <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="p">});</span>
+            </code></pre></div>
+        </article>
+    </div>
+</body>
+</html>

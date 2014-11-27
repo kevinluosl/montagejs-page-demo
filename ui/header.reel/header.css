@@ -1,0 +1,42 @@
+.Header {
+
+}
+.Header .pageSelector
+{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    z-index:10;
+}
+.Header > nav
+{
+    padding: 0px 40px;
+    text-align: left;
+    background-color: #333;
+    color:white;
+    padding:0px;
+    mnargin:0px;
+    position: fixed;
+    width:100%;
+    z-index:2;
+}
+.Header > nav > div
+{
+    display:inline-block;
+    font-size: 15px;
+    margin: 0;
+    padding: 20px 15px;
+    color: hsla(0, 0%, 70%, 1);
+    text-decoration: none;
+    cursor: pointer;
+}
+.Header > nav > div.selected
+{
+    color:#fff;
+
+    cursor:default;
+}
+.Header > nav > div:hover {
+    color:#fff;
+    background-color: hsla(0,0%,0%,0.2);
+}

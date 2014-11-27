@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Main</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <script type="text/montage-serialization">
+        {
+            "owner": {
+                "properties": {
+                    "element": {"#": "main"}
+                }
+            },
+            "pageRangeController":{
+                 "prototype": "montage/core/range-controller"
+            },
+            "header":{
+                 "prototype": "ui/header.reel",
+                 "properties": {
+                          "element": {"#": "header"}
+                  },
+                  "bindings":{
+                            "contentController":{"<-":"@pageRangeController"}
+                      }
+            },
+            "content":{
+                 "prototype": "ui/content.reel",
+                 "properties": {
+                          "element": {"#": "content"}
+                  },
+                  "bindings":{
+                            "switchValue":{"<-":"@pageRangeController.selection.0.identifier"}
+                      }
+            },
+
+            "pageComponents": {
+                 "prototype": "ui/page-components.reel",
+                 "properties": {"element": {"#": "pageComponents"}}
+             },
+            "pageDeclaration": {
+                     "prototype": "ui/page-declaration.reel",
+                     "properties": {"element": {"#": "pageDeclaration"}}
+             },
+            "pageObjects": {
+                     "prototype": "ui/page-objects.reel",
+                     "properties": {"element": {"#": "pageObjects"}}
+             },
+            "pageDatabinding": {
+                     "prototype": "ui/page-databinding.reel",
+                     "properties": {"element": {"#": "pageDatabinding"}}
+           }
+        }
+    </script>
+</head>
+<body>
+<div data-montage-id="main" data-montage-skin="light" class="Main">
+    <div data-montage-id="header"></div>
+    <div data-montage-id="content">
+        <div data-arg="p0" data-montage-id="pageComponents"></div>
+        <div data-arg="p1" data-montage-id="pageDeclaration"></div>
+        <div data-arg="p2" data-montage-id="pageObjects"></div>
+        <div data-arg="p3" data-montage-id="pageDatabinding"></div>
+    </div>
+</div>
+</body>
+</html>

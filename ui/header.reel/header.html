@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="header.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+                "properties": {
+                    "element": {"#": "owner"}
+                }
+         },
+        "pageSelector":{
+                 "prototype": "digit/ui/select.reel",
+                "properties": {
+                    "element": {"#": "pageSelector"},
+                     "labelPropertyName": "label",
+                      "valuePropertyName": "identifier"
+                },
+                "bindings":{
+                     "contentController": { "<-": "@owner.contentController" },
+                     "value":{"<-":"@owner.contentController.selection.0"}
+                }
+            },
+           "pageHeaders": {
+                    "prototype": "montage/ui/repetition.reel",
+                    "properties": {
+                        "element": { "#": "pageHeaders" },
+                        "isSelectionEnabled": true
+                  },
+                 "bindings":{
+                     "contentController": { "<-": "@owner.contentController" }
+                }
+             },
+          "pageHeader": {
+                "prototype": "montage/ui/text.reel",
+                "properties": {
+                    "element": { "#": "pageHeader" }
+                },
+                "bindings": {
+                    "value": { "<-": "@pageHeaders:iteration.object.label" }
+              }
+            }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="Header">
+        <select data-montage-id="pageSelector" class="pageSelector"></select>
+        <nav data-montage-id="pageHeaders">
+            <div data-montage-id="pageHeader"></div>
+        </nav>
+    </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+.Main {
+    font: 13px/1.231 'Gotham A', 'Gotham B', sans-serif;
+}
+
+article
+{
+    padding:10px;
+}
+blockquote {
+    margin: 1.5em 0;
+    padding: 0 1em;
+    font-size: .9em;
+    line-height: 1.3;
+    color: hsl(0, 0%, 50%);
+    border-radius: 0 6px 6px 0;
+    border-left: 4px solid hsl(0, 0%, 80%);
+}
+.highlight, .prettyprint {
+    /* display: block; */
+    position: relative;
+    margin: 1em 0;
+    padding: 20px;
+    font-size: .9em;
+    line-height: 1.3;
+    border-radius: 6px;
+    border: 1px solid hsl(0, 0%, 88%);
+    background-color: hsl(0, 0%, 98%);
+    color: hsl(0, 0%, 50%);
+    box-shadow: inset 0 1px 3px hsla(0, 0%, 0%, 0.04), 0 1px 0 hsla(0, 0%, 100%, 0.6);
+}
+
+
+@-webkit-keyframes pagecontainerfadein /* Safari 和 Chrome */
+{
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+.montage-Slot > div
+{
+    padding-top:40px;
+    -webkit-animation: pagecontainerfadein 2s;
+}
